@@ -48,7 +48,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         txtCpfCliente = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cliente");
         setResizable(false);
 
@@ -207,7 +207,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCpfClienteFocusLost
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtDataNascClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataNascClienteFocusGained

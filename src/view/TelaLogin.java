@@ -13,8 +13,8 @@ import javax.swing.JOptionPane;
  * @author ESCRITORIO
  */
 public class TelaLogin extends javax.swing.JFrame {
-    private final String login = "admin";
-    private final String senha = "589574";
+    private final String login = "";
+    private final String senha = "";
     /**
      * Creates new form TelaLogin
      */
@@ -109,7 +109,8 @@ public class TelaLogin extends javax.swing.JFrame {
     
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         if(checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
-            new TelaCadastroCliente().setVisible(true);
+            this.dispose();
+            new TelaPrincipal().setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Os dados informados estão incorretos!");
             txtSenha.setText(null);
@@ -119,7 +120,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             if(checkLogin(txtLogin.getText(), new String(txtSenha.getPassword()))){
-                new TelaCadastroCliente().setVisible(true);
+                this.dispose();
+                new TelaPrincipal().setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Os dados informados estão incorretos!");
                 txtSenha.setText(null);
