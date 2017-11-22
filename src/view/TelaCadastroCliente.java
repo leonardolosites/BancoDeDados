@@ -5,11 +5,17 @@
  */
 package view;
 
+import com.sun.jndi.ldap.Connection;
 import control.Cliente;
 import java.awt.HeadlessException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 import model.ConexaoMySQL;
+import model.ConnectionFactory;
 
 /**
  *
@@ -225,25 +231,43 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
         try {
             Cliente novoCliente = new Cliente(documento, endereco, telefone, email, nome, sobrenome, dataNasc, sexo);
-            ConexaoMySQL.getConnectionMySQL();
-            System.out.println(ConexaoMySQL.statusConnection());
+            java.sql.Connection conn = new ConnectionFactory().getConnection();
             //Insere os dados do cliente no banco de dados
-            int r = JOptionPane.showConfirmDialog(null, "Cliente cadastrado com sucesso!\nDeseja realizar um novo cadastro?", "Informação", YES_NO_OPTION);
+            String sql = "INSERT INTO cliente ("
+                    + "documento_cliente, "
+                    + "endereco_cliente, "
+                    + "telefone_cliente, "
+                    + "email_cliente, "
+                    + "nome_cliente, "
+                    + "sobrenome_cliente, "
+                    + "data_nasc_cliente, "
+                    + "sexo_cliente"
+                    + ") VALUES (?,?,?,?,?,?,?,?)";
+            try {
 
-            if (r == 1 || r == -1) {//Se a resposta for não ou o usuário fechar a tela
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1, novoCliente.getDocumento());
+                stmt.setString(2, novoCliente.getEndereco());
+                stmt.setString(3, novoCliente.getTelefone());
+                stmt.setString(4, novoCliente.getEmail());
+                stmt.setString(5, novoCliente.getNome());
+                stmt.setString(6, novoCliente.getSobrenome());
+                stmt.setString(7, novoCliente.getDataNasc());
+                stmt.setString(8, novoCliente.getSexo());
+
+                stmt.execute();
+                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
                 limpaCampos();
-                this.dispose();
-            } else {
-                limpaCampos();
-                txtNomeCliente.grabFocus();
+                
+                stmt.close();
+                conn.close();
+
+            } catch (SQLException e) {
+                System.out.println("Erro ao inserir o registro na tabela cliente!\nDetalhes: " + e.getMessage());
             }
-            
-            ConexaoMySQL.fecharConexao();
-            System.out.println(ConexaoMySQL.statusConnection());
-            
+
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar salvar um novo cliente!\nDetalhes: " + e.getMessage());
-            System.out.println(ConexaoMySQL.statusConnection());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

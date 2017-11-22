@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
     public Connection getConnection(){
         try {
-            return DriverManager.getConnection("jdbc:mysql://10.219.32.30/sistema", "root", "MLidom2020!");
+            return DriverManager.getConnection("jdbc:mysql://localhost/sistema", "root", "root");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
