@@ -6,10 +6,9 @@
 package view;
 
 import control.Cliente;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 
 /**
  *
@@ -70,24 +69,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
         jLabel6.setText("E-mail");
 
-        txtDataNascCliente.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtDataNascClienteFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtDataNascClienteFocusLost(evt);
-            }
-        });
-
-        txtTelefoneCliente.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtTelefoneClienteFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtTelefoneClienteFocusLost(evt);
-            }
-        });
-
         jButton1.setText("Salvar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,24 +80,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        txtCpfCliente.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCpfClienteFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCpfClienteFocusLost(evt);
-            }
-        });
-
-        txtEnderecoCliente.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtEnderecoClienteFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtEnderecoClienteFocusLost(evt);
             }
         });
 
@@ -132,48 +95,47 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addGap(44, 44, 44)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(txtSobrenomeCliente)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel5))
-                                    .addGap(159, 159, 159))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtCpfCliente)
-                                    .addGap(9, 9, 9)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtDataNascCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7)
-                                        .addComponent(cbSexoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(66, 66, 66)
-                                    .addComponent(Telefone))))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtTelefoneCliente))
-                        .addComponent(txtEnderecoCliente)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(txtSobrenomeCliente)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5))
+                                .addGap(159, 159, 159))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtCpfCliente)
+                                .addGap(9, 9, 9)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDataNascCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(cbSexoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(Telefone))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTelefoneCliente))
+                    .addComponent(txtEnderecoCliente, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -235,49 +197,20 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCpfClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCpfClienteFocusGained
-        try {
-            txtCpfCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (ParseException ex) {
-            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-    }//GEN-LAST:event_txtCpfClienteFocusGained
-
-    private void txtCpfClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCpfClienteFocusLost
-        String cpf = txtCpfCliente.getText();
-        txtCpfCliente.setText(cpf);
-    }//GEN-LAST:event_txtCpfClienteFocusLost
+    public void limpaCampos() {
+        txtNomeCliente.setText("");
+        txtSobrenomeCliente.setText("");
+        txtCpfCliente.setText("");
+        txtDataNascCliente.setText("");
+        cbSexoCliente.setSelectedIndex(0);
+        txtEnderecoCliente.setText("");
+        txtEmailCliente.setText("");
+        txtTelefoneCliente.setText("");
+    }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void txtDataNascClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataNascClienteFocusGained
-        try {
-            txtDataNascCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (ParseException ex) {
-            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_txtDataNascClienteFocusGained
-
-    private void txtDataNascClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataNascClienteFocusLost
-        String dataNascCliente = txtDataNascCliente.getText();
-        txtDataNascCliente.setText(dataNascCliente);
-    }//GEN-LAST:event_txtDataNascClienteFocusLost
-
-    private void txtTelefoneClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefoneClienteFocusGained
-        try {
-            txtTelefoneCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
-        } catch (ParseException ex) {
-            Logger.getLogger(TelaCadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_txtTelefoneClienteFocusGained
-
-    private void txtTelefoneClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefoneClienteFocusLost
-        String celularCliente = txtTelefoneCliente.getText();
-        txtTelefoneCliente.setText(celularCliente);
-    }//GEN-LAST:event_txtTelefoneClienteFocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String nome = txtNomeCliente.getText();
@@ -291,19 +224,21 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
         try {
             Cliente novoCliente = new Cliente(documento, endereco, telefone, email, nome, sobrenome, dataNasc, sexo);
-            JOptionPane.showMessageDialog(null, novoCliente.getInfo());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar salvar um novo cliente!\nDetalhes: "+e.getMessage());
+            // JOptionPane.showMessageDialog(null, novoCliente.getInfo());
+            int r = JOptionPane.showConfirmDialog(null, "Cliente cadastrado com sucesso!\nDeseja realizar um novo cadastro?", "Informação", YES_NO_OPTION);
+
+            if (r == 1 || r == -1) {
+                limpaCampos();
+                this.dispose();
+            } else {
+                limpaCampos();
+                txtNomeCliente.grabFocus();
+            }
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar salvar um novo cliente!\nDetalhes: " + e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtEnderecoClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEnderecoClienteFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEnderecoClienteFocusGained
-
-    private void txtEnderecoClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEnderecoClienteFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEnderecoClienteFocusLost
 
     /**
      * @param args the command line arguments
