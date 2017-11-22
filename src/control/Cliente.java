@@ -11,6 +11,7 @@ package control;
  */
 public class Cliente extends Pessoa {
     protected long codigo = 0;
+    protected boolean status = true;
     private float credito;
     private String documento;
     private String endereco;

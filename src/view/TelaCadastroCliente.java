@@ -9,6 +9,7 @@ import control.Cliente;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
+import model.ConexaoMySQL;
 
 /**
  *
@@ -224,19 +225,25 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
         try {
             Cliente novoCliente = new Cliente(documento, endereco, telefone, email, nome, sobrenome, dataNasc, sexo);
-            // JOptionPane.showMessageDialog(null, novoCliente.getInfo());
+            ConexaoMySQL.getConnectionMySQL();
+            System.out.println(ConexaoMySQL.statusConnection());
+            //Insere os dados do cliente no banco de dados
             int r = JOptionPane.showConfirmDialog(null, "Cliente cadastrado com sucesso!\nDeseja realizar um novo cadastro?", "Informação", YES_NO_OPTION);
 
-            if (r == 1 || r == -1) {
+            if (r == 1 || r == -1) {//Se a resposta for não ou o usuário fechar a tela
                 limpaCampos();
                 this.dispose();
             } else {
                 limpaCampos();
                 txtNomeCliente.grabFocus();
             }
-
+            
+            ConexaoMySQL.fecharConexao();
+            System.out.println(ConexaoMySQL.statusConnection());
+            
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar salvar um novo cliente!\nDetalhes: " + e.getMessage());
+            System.out.println(ConexaoMySQL.statusConnection());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
