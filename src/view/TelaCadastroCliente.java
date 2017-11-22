@@ -5,16 +5,11 @@
  */
 package view;
 
-import com.sun.jndi.ldap.Connection;
 import control.Cliente;
 import java.awt.HeadlessException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.YES_NO_OPTION;
-import model.ConexaoMySQL;
 import model.ConnectionFactory;
 
 /**

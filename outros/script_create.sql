@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `sistema`.`cliente` (
   `nome_cliente` VARCHAR(100) NOT NULL,
   `sobrenome_cliente` VARCHAR(100) NULL,
   `documento_cliente` VARCHAR(25) NULL,
-  `data_nasc_cliente` DATE NOT NULL,
+  `data_nasc_cliente` VARCHAR(10) NULL,
   `sexo_cliente` VARCHAR(15) NOT NULL,
   `endereco_cliente` VARCHAR(255) NULL,
   `email_cliente` VARCHAR(100) NULL,
