@@ -3,25 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package control;
+package test;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+import model.ConnectionFactory;
 
 /**
  *
  * @author leonardo
  */
-public class JDBCExemplo {
+public class TestaConexao {
 
     public static void main(String[] args) throws SQLException {
-        Connection conexao = DriverManager.getConnection(
-            "jdbc:mysql://10.219.32.30/sistema",
-            "root",
-            "MLidom2020!"
-        );
-        System.out.println("Conectado!");
-        conexao.close();
+        Connection con = new ConnectionFactory().getConnection();
+        System.out.println("Conexão aberta!");
+        con.close();
+        System.out.println("Conexão Fechada!");
     }
 }
