@@ -7,7 +7,7 @@ package test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import model.ConnectionFactory;
+import control.ConnectionFactory;
 
 /**
  *

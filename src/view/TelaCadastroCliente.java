@@ -5,12 +5,10 @@
  */
 package view;
 
-import control.Cliente;
-import java.awt.HeadlessException;
-import java.sql.PreparedStatement;
+import model.Cliente;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import model.ConnectionFactory;
+import dao.ClienteDao;
 
 /**
  *
@@ -215,55 +213,22 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nome = txtNomeCliente.getText();
-        String sobrenome = txtSobrenomeCliente.getText();
-        String documento = txtCpfCliente.getText();
-        String dataNasc = txtDataNascCliente.getText();
-        String email = txtEmailCliente.getText();
-        String telefone = txtTelefoneCliente.getText();
-        String endereco = txtEnderecoCliente.getText();
-        String sexo = cbSexoCliente.getItemAt(cbSexoCliente.getSelectedIndex());
 
-        try {
-            Cliente novoCliente = new Cliente(documento, endereco, telefone, email, nome, sobrenome, dataNasc, sexo);
-            java.sql.Connection conn = new ConnectionFactory().getConnection();
-            //Insere os dados do cliente no banco de dados
-            String sql = "INSERT INTO cliente ("
-                    + "documento_cliente, "
-                    + "endereco_cliente, "
-                    + "telefone_cliente, "
-                    + "email_cliente, "
-                    + "nome_cliente, "
-                    + "sobrenome_cliente, "
-                    + "data_nasc_cliente, "
-                    + "sexo_cliente"
-                    + ") VALUES (?,?,?,?,?,?,?,?)";
-            try {
+        Cliente cliente = new Cliente();
+        cliente.setNome(txtNomeCliente.getText());
+        cliente.setSobrenome(txtSobrenomeCliente.getText());
+        cliente.setDocumento(txtCpfCliente.getText());
+        cliente.setDataNasc(txtDataNascCliente.getText());
+        cliente.setEmail(txtEmailCliente.getText());
+        cliente.setTelefone(txtTelefoneCliente.getText());
+        cliente.setEndereco(txtEnderecoCliente.getText());
+        cliente.setSexo(cbSexoCliente.getItemAt(cbSexoCliente.getSelectedIndex()));
 
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                stmt.setString(1, novoCliente.getDocumento());
-                stmt.setString(2, novoCliente.getEndereco());
-                stmt.setString(3, novoCliente.getTelefone());
-                stmt.setString(4, novoCliente.getEmail());
-                stmt.setString(5, novoCliente.getNome());
-                stmt.setString(6, novoCliente.getSobrenome());
-                stmt.setString(7, novoCliente.getDataNasc());
-                stmt.setString(8, novoCliente.getSexo());
-
-                stmt.execute();
-                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
-                limpaCampos();
-                
-                stmt.close();
-                conn.close();
-
-            } catch (SQLException e) {
-                System.out.println("Erro ao inserir o registro na tabela cliente!\nDetalhes: " + e.getMessage());
-            }
-
-        } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar salvar um novo cliente!\nDetalhes: " + e.getMessage());
-        }
+        ClienteDao dao = new ClienteDao();
+        dao.insert(cliente);
+        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+        limpaCampos();
+        txtNomeCliente.requestFocus();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
