@@ -10,7 +10,8 @@ package model;
  * @author ESCRITORIO
  */
 public class Cliente extends Pessoa {
-    protected long codigo = 0;
+
+    protected long id = 0;
     protected boolean status = true;
     private float credito;
     private String documento;
@@ -21,7 +22,7 @@ public class Cliente extends Pessoa {
     public Cliente() {
         super();
     }
-    
+
     public Cliente(String documento, String endereco, String telefone, String email, String nome, String sobrenome, String dataNasc, String sexo) {
         super(nome, sobrenome, dataNasc, sexo);
         this.documento = documento;
@@ -61,7 +62,7 @@ public class Cliente extends Pessoa {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -70,20 +71,46 @@ public class Cliente extends Pessoa {
         this.email = email;
     }
 
-    public String getInfo(){
-        String informacoes = "Nome Completo: "+super.getNome()+" "+super.getSobrenome();
-        informacoes += "\nDocumento: "+documento+" "+" Sexo: "+super.getSexo();
-        informacoes += "\nData de Nascimento: "+super.getDataNasc();
-        informacoes += "\nEndereço: "+endereco;
-        informacoes += "\nE-mail: "+email;
-        informacoes += "\nTelefone: "+telefone;
-        
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getInfo() {
+        String informacoes = "Nome Completo: " + super.getNome() + " " + super.getSobrenome();
+        informacoes += "\nDocumento: " + documento + " " + " Sexo: " + super.getSexo();
+        informacoes += "\nData de Nascimento: " + super.getDataNasc();
+        informacoes += "\nEndereço: " + endereco;
+        informacoes += "\nE-mail: " + email;
+        informacoes += "\nTelefone: " + telefone;
+
         return informacoes;
     }
-    
+
     @Override
     public String toString() {
-        return "Cliente{" + "codigo=" + codigo + ", credito=" + credito + ", documento=" + documento + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + '}';
+        return "Cliente{" + super.toString() + "id=" + id + ", status=" + status + ", credito=" + credito + ", documento=" + documento + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + '}';
     }
     
+    public String print(){
+        return ""
+                + "Nome Completo: "+super.getNome()+" "+super.getSobrenome()
+                + "\nData de Nascimento: "+super.getDataNasc()
+                + "\nSexo: "+super.getSexo()
+                + "\nEndereço: "+getEndereco()
+                + "\nE-mail: "+getEmail()
+                + "\nTelefone:"+getTelefone();
+    }
+
 }

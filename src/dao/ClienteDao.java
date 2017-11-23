@@ -53,12 +53,46 @@ public class ClienteDao {
 
             stmt.execute();
             stmt.close();
-            conn.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public Cliente select(Long id) {
+        Cliente cliente = null;
+
+        try {
+            String sql = "SELECT * FROM cliente WHERE id_cliente = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                cliente = new Cliente();
+                cliente.setId(rs.getLong("id_cliente"));
+                cliente.setNome(rs.getString("nome_cliente"));
+                cliente.setSobrenome(rs.getString("sobrenome_cliente"));
+                cliente.setDocumento(rs.getString("documento_cliente"));
+                cliente.setDataNasc(rs.getString("data_nasc_cliente"));
+                cliente.setSexo(rs.getString("sexo_cliente"));
+                cliente.setEndereco(rs.getString("endereco_cliente"));
+                cliente.setEmail(rs.getString("email_cliente"));
+                cliente.setTelefone(rs.getString("telefone_cliente"));
+            }
+
+            rs.close();
+            stmt.close();
+            
+            return cliente;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
     }
 
     public List<Cliente> getLista() {
@@ -77,7 +111,6 @@ public class ClienteDao {
 
             rs.close();
             stmt.close();
-            conn.close();
 
             return (List) clientes;
 
@@ -85,6 +118,53 @@ public class ClienteDao {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void update(Cliente cliente) {
+        String sql = "UPDATE cliente SET"
+                + "documento_cliente = ?"
+                + "endereco_cliente = ?"
+                + "telefone_cliente = ?"
+                + "email_cliente = ?"
+                + "nome_cliete = ?,"
+                + "sobrenome_cliente = ?,"
+                + "data_nasc_cliente = ?"
+                + "sexo_cliente = ?,"
+                + "WHERE id_cliente = ?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, cliente.getDocumento());
+            stmt.setString(2, cliente.getEndereco());
+            stmt.setString(3, cliente.getTelefone());
+            stmt.setString(4, cliente.getEmail());
+            stmt.setString(5, cliente.getNome());
+            stmt.setString(6, cliente.getSobrenome());
+            stmt.setString(7, cliente.getDataNasc());
+            stmt.setString(8, cliente.getSexo());
+            stmt.setLong(9, cliente.getId());
+
+            stmt.execute();
+            stmt.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void delete(Cliente cliente) {
+        try {
+            String sql = "DELETE FROM cliente WHERE id_cliente = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, cliente.getId());
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
